@@ -22,7 +22,7 @@ def transform_mov(df_mov,movie):
         is_title = re.search(movie,title,re.IGNORECASE)
 
         if is_title != None:
-            complete_gen = df_genre[index]
+            complete_gen = df_genre[index]    
             options_comp = re.split('\|', complete_gen)
 
             for a in range(len(df_genre)):
@@ -33,6 +33,7 @@ def transform_mov(df_mov,movie):
                         coincidences += 1 
                 if coincidences >=2:
                     complete_g_index.append(a)
+                coincidences = 0
             fin = True
 
         elif index == (len(df_title)-1):
@@ -41,7 +42,6 @@ def transform_mov(df_mov,movie):
         index += 1
 
     # Si lo hemos encontrado, buscamos en el dataset películas que coincidan en 2 géneros o más con ella
-    
 
     if is_title == None:
         return None , None ,None                                                # Si no encontramos la película en el dtaset, devolvemos False
@@ -73,7 +73,7 @@ def load(movie_index,df_title,df_genres):
     elif num == 0:
         num = len(movie_index)-1
 
-    print("\nBased on your initial choice, we are sure you'll love these films")
+    print("\n - Suggestions -")
     
     for a in range(num):
         index = movie_index[a]
@@ -90,7 +90,7 @@ if __name__=='__main__':
     genres_list = ['Action','Adventure','Animation', "Children", 'Comedy' , 'Crime', 'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical','Mystery','Romance','Sci-Fi','Thriller','War', 'Western']
     
     # Inicio el programa y hago un print de los géneros
-    print('\nWelcome to your movie recommendator!\n''Please introduce one of the following genres in order to be recommended a new film:\n ')
+    print('\nWelcome to your movie recommendator!\n\n''Please introduce one of the following genres in order to be recommended a new film:\n ')
     for genre in genres_list:  
         print('-',genre)
     
@@ -107,7 +107,7 @@ if __name__=='__main__':
             wanted = input('\nYour choice: ')
         else:
             valid = True
-    print("Now we'll search in out database. Please be patient")
+    print("Now we'll search in our database. Please be patient")
 
     df_mov = extract()
 
@@ -121,6 +121,3 @@ if __name__=='__main__':
     else:
         print('\nWe foud your movie. These following films have at least 2 genres in common with it')
         load(complete_g_index,df_title, df_genres)
-
-
-
