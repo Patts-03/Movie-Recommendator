@@ -98,15 +98,16 @@ if __name__=='__main__':
     # Obtenemos el género base y la película y ponemos en marcha la búsqueda
     
     wanted = input('\nYour genre choice: ')
-    print("\nNow please write a movie you'd want your recommendation to be similar to ")
-    movie = input('\nYour movie: ')
-
     while not valid:
         if wanted not in genres_list:
             print("Your choice doesn't exist. Please write it down again(It must be identical to the shown list)")
             wanted = input('\nYour choice: ')
         else:
             valid = True
+            
+    print("\nNow please write a movie you'd want your recommendation to be similar to ")
+    movie = input('\nYour movie: ')
+    
     print("Now we'll search in our database. Please be patient")
 
     df_mov = extract()
