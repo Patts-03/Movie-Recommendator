@@ -99,7 +99,7 @@ if __name__=='__main__':
     
     wanted = input('\nYour genre choice: ')
     while not valid:
-        if wanted not in genres_list:
+        if re.search(wanted,genres_list,re.IGNORECASE) == None:
             print("Your choice doesn't exist. Please write it down again(It must be identical to the shown list)")
             wanted = input('\nYour choice: ')
         else:
